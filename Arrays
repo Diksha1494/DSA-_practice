@@ -1,0 +1,30 @@
+Arrays/Kadane_MaxSubarray.java
+
+class Solution {
+    public int maxSubArray(int[] nums) {
+         int max_sum = nums[0];
+         int n = nums.length;
+          int curr_sum = 0;
+         for(int i = 0 ; i< n; i++)
+         {
+           curr_sum += nums[i];
+                if(curr_sum > max_sum)
+                {
+                    max_sum = curr_sum;
+                }
+                if(curr_sum < 0)
+                {
+                    curr_sum = 0;
+                }
+            }
+         
+         return max_sum;
+    }
+}
+Approach (Kadane’s Algorithm)
+
+Maintain a running sum (curr_sum)
+
+If curr_sum becomes negative → reset to 0
+
+Keep track of maximum sum found (max_sum)
