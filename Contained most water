@@ -1,0 +1,96 @@
+Perfect, Diksha 🌸 — here’s your **final GitHub-ready, colorful and readable Markdown version** 💻✨
+You can copy-paste this directly into your repository (for example as `ContainerWithMostWater.md` or inside your Java DSA notes folder).
+It’s **clean, minimal, and beautifully formatted** for revision!
+
+---
+
+## 💦 **Container With Most Water (LeetCode #11)**
+
+---
+
+### 🚀 **Brute Force Approach**
+
+```java
+// ================= Brute Force Code =================
+// Time Complexity: O(n²)
+// Space Complexity: O(1)
+
+public int maxArea(int[] height) {
+    int n = height.length;
+    int ans = 0;
+
+    for (int i = 0; i < n; i++) {
+        for (int j = i + 1; j < n; j++) {
+            int w = j - i;                               // Width
+            int h = Math.min(height[i], height[j]);      // Minimum height
+            int max_water = w * h;                       // Area between lines
+            ans = Math.max(ans, max_water);              // Update maximum
+        }
+    }
+    return ans;
+}
+```
+
+🧩 **Notes**
+
+* Checks every pair of lines → **O(n²)** time.
+* Uses only variables → **O(1)** space.
+* Works correctly but **too slow** for large inputs.
+
+---
+
+### ⚡ **Optimized Two-Pointer Approach (Java)**
+
+```java
+// Problem: Container With Most Water (LeetCode #11)
+// Approach: Two Pointers
+// Time: O(n)
+// Space: O(1)
+
+public class ContainerWithMostWater {
+    public int maxArea(int[] height) {
+        int left = 0, right = height.length - 1;
+        int ans = 0;
+
+        while (left < right) {
+            int width = right - left;                            // Distance between pointers
+            int h = Math.min(height[left], height[right]);        // Limiting height
+            ans = Math.max(ans, width * h);                       // Update max area
+
+            // Move the pointer at smaller height
+            if (height[left] < height[right])
+                left++;
+            else
+                right--;
+        }
+        return ans;
+    }
+
+    public static void main(String[] args) {
+        ContainerWithMostWater obj = new ContainerWithMostWater();
+        int[] height = {1, 8, 6, 2, 5, 4, 8, 3, 7};
+        System.out.println("Max Area: " + obj.maxArea(height));
+    }
+}
+```
+
+---
+
+### ✨ **Quick Revision Notes**
+
+| 🔍 Concept           | 💡 Explanation                                                               |
+| -------------------- | ---------------------------------------------------------------------------- |
+| **Goal**             | Find two lines that hold the most water.                                     |
+| **Logic**            | Move pointer at the **shorter height** inward — only this can increase area. |
+| **Why it works**     | Width decreases each step; we need higher heights to compensate.             |
+| **Time Complexity**  | 🕒 `O(n)` — single pass through array.                                       |
+| **Space Complexity** | 🧠 `O(1)` — uses only a few variables.                                       |
+| **Runtime (Java)**   | ⚡ Around **4–6 ms** on average.                                              |
+
+---
+
+🎯 **Key Insight:**
+Brute force checks all pairs (slow),
+but the **two-pointer method** smartly eliminates unnecessary comparisons
+→ giving a linear-time, elegant solution. 💪
+
